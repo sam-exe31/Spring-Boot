@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 50px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding doesn't break layout width */
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>User Data Form</h2>
+
+    <form action="/Register" method="post">
+
+        <div class="form-group">
+            <label for="uname">Full Name:</label>
+            <input type="text" id="uname" name="uname" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="uage">Age:</label>
+            <input type="number" id="uage" name="uage" placeholder="Enter age" required>
+        </div>
+
+        <div class="form-group">
+            <label for="ucity">City:</label>
+            <input type="text" id="ucity" name="ucity" placeholder="Enter city" required>
+        </div>
+
+        <div class="form-group">
+            <label for="uroll">Roll Number:</label>
+            <input type="text" id="uroll" name="uroll" placeholder="Enter roll number" required>
+        </div>
+
+        <div class="form-group">
+            <label for="upass">Password:</label>
+            <input type="password" id="upass" name="upass" placeholder="Enter password" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Data</button>
+
+    </form>
+</div>
+
+</body>
+</html>

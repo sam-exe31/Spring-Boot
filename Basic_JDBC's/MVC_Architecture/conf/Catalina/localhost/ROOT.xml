@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context docBase="D:\Spring_for_sam\MVC_Architecture\src\main\webapp">
+  <Resources cacheMaxSize="10240">
+    <PreResources base="D:/Spring_for_sam/MVC_Architecture/target/classes" className="org.apache.catalina.webresources.DirResourceSet" webAppMount="/WEB-INF/classes"/>
+    <PostResources base="D:/Spring_for_sam/Plain_JDBC/src/main/java/Lib/mysql-connector-j-9.7.0.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/mysql-connector-j-9.7.0.jar"/>
+  </Resources>
+</Context>

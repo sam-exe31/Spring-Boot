@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<Configuration status="INFO">
+
+    <Appenders>
+        <Console name="LoggingToConsole" target="SYSTEM_OUT">
+
+            <PatternLayout>
+                <Pattern>
+                    %d -%c - [%M] - (%p) - %m - %n
+                </Pattern>
+
+            </PatternLayout>
+
+        </Console>
+
+        <File name="LoggingToFile" fileName="Logs/mylogging.log">
+            <PatternLayout>
+                <Pattern>
+                    %d -%c - [%M] - (%p) - %m - %n
+                </Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+
+<!--if we want all the methods to be part of the console then we use root and appender console and specify the level-->
+    <Loggers>
+        <Root level="warn">
+            <AppenderRef ref="LoggingToConsole" />
+            <AppenderRef ref="LoggingToFile"/>
+        </Root>
+
+    </Loggers>
+
+
+
+</Configuration>

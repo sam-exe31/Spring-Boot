@@ -1,0 +1,3 @@
+2026-06-03 08:42:20,255 -org.example.Log_4j.log4jTest - [process] - (WARN) - from the warn method - 
+2026-06-03 08:42:20,258 -org.example.Log_4j.log4jTest - [process] - (ERROR) - from error merthod - 
+2026-06-03 08:42:20,258 -org.example.Log_4j.log4jTest - [process] - (FATAL) - from fatal methd - 

@@ -1,0 +1,44 @@
+[2026-06-03 09:56:21,454] : org.example.spring_web_1.SpringWeb1Application :INFO --> Starting SpringWeb1Application using Java 25.0.2 with PID 6400 (D:\Spring_for_sam\Spring_framework\Spring_web_1\target\classes started by sam in D:\Spring_for_sam\Spring_framework\Spring_web_1) ::  2026-06-03 09:56:21,454  
+[2026-06-03 09:56:21,456] : org.example.spring_web_1.SpringWeb1Application :INFO --> No active profile set, falling back to 1 default profile: "default" ::  2026-06-03 09:56:21,456  
+[2026-06-03 09:56:21,500] : org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor :INFO --> Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable ::  2026-06-03 09:56:21,500  
+[2026-06-03 09:56:21,500] : org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor :INFO --> For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' ::  2026-06-03 09:56:21,500  
+[2026-06-03 09:56:21,933] : org.springframework.data.repository.config.RepositoryConfigurationDelegate :INFO --> Bootstrapping Spring Data JPA repositories in DEFAULT mode. ::  2026-06-03 09:56:21,933  
+[2026-06-03 09:56:21,951] : org.springframework.data.repository.config.RepositoryConfigurationDelegate :INFO --> Finished Spring Data repository scanning in 11 ms. Found 0 JPA repository interfaces. ::  2026-06-03 09:56:21,951  
+[2026-06-03 09:56:22,296] : org.springframework.boot.tomcat.TomcatWebServer :INFO --> Tomcat initialized with port 8080 (http) ::  2026-06-03 09:56:22,296  
+[2026-06-03 09:56:22,306] : org.apache.catalina.core.StandardService :INFO --> Starting service [Tomcat] ::  2026-06-03 09:56:22,306  
+[2026-06-03 09:56:22,306] : org.apache.catalina.core.StandardEngine :INFO --> Starting Servlet engine: [Apache Tomcat/11.0.21] ::  2026-06-03 09:56:22,306  
+[2026-06-03 09:56:22,342] : org.springframework.boot.web.context.servlet.WebApplicationContextInitializer :INFO --> Root WebApplicationContext: initialization completed in 842 ms ::  2026-06-03 09:56:22,342  
+[2026-06-03 09:56:22,448] : com.zaxxer.hikari.HikariDataSource :INFO --> HikariPool-1 - Starting... ::  2026-06-03 09:56:22,448  
+[2026-06-03 09:56:22,578] : com.zaxxer.hikari.pool.HikariPool :INFO --> HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:spring_web user=SA ::  2026-06-03 09:56:22,578  
+[2026-06-03 09:56:22,580] : com.zaxxer.hikari.HikariDataSource :INFO --> HikariPool-1 - Start completed. ::  2026-06-03 09:56:22,580  
+[2026-06-03 09:56:22,605] : org.hibernate.orm.jpa :INFO --> HHH008540: Processing PersistenceUnitInfo [name: default] ::  2026-06-03 09:56:22,605  
+[2026-06-03 09:56:22,638] : org.hibernate.orm.core :INFO --> HHH000001: Hibernate ORM core version 7.2.12.Final ::  2026-06-03 09:56:22,638  
+[2026-06-03 09:56:22,967] : org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo :INFO --> No LoadTimeWeaver setup: ignoring JPA class transformer ::  2026-06-03 09:56:22,967  
+[2026-06-03 09:56:23,022] : org.hibernate.orm.connections.pooling :INFO --> HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:spring_web]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: SPRING_WEB/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown ::  2026-06-03 09:56:23,022  
+[2026-06-03 09:56:23,438] : org.hibernate.orm.core :INFO --> HHH000182: No default (no-argument) constructor for class [org.example.spring_web_1.Entity.Student] (class must be instantiated by Interceptor) ::  2026-06-03 09:56:23,438  
+[2026-06-03 09:56:23,449] : org.hibernate.orm.core :INFO --> HHH000182: No default (no-argument) constructor for class [org.example.spring_web_1.Entity.Product] (class must be instantiated by Interceptor) ::  2026-06-03 09:56:23,449  
+[2026-06-03 09:56:23,554] : org.hibernate.orm.core :INFO --> HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) ::  2026-06-03 09:56:23,554  
+[2026-06-03 09:56:23,579] : org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean :INFO --> Initialized JPA EntityManagerFactory for persistence unit 'default' ::  2026-06-03 09:56:23,579  
+[2026-06-03 09:56:23,620] : org.springframework.boot.jpa.autoconfigure.JpaBaseConfiguration$JpaWebConfiguration :WARN --> spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning ::  2026-06-03 09:56:23,620  
+[2026-06-03 09:56:23,849] : org.springframework.boot.tomcat.TomcatWebServer :INFO --> Tomcat started on port 8080 (http) with context path '/api' ::  2026-06-03 09:56:23,849  
+[2026-06-03 09:56:23,853] : org.example.spring_web_1.SpringWeb1Application :INFO --> Started SpringWeb1Application in 2.779 seconds (process running for 3.222) ::  2026-06-03 09:56:23,853  
+[2026-06-03 09:56:34,836] : org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/api] :INFO --> Initializing Spring DispatcherServlet 'dispatcherServlet' ::  2026-06-03 09:56:34,836  
+[2026-06-03 09:56:34,836] : org.springframework.web.servlet.DispatcherServlet :INFO --> Initializing Servlet 'dispatcherServlet' ::  2026-06-03 09:56:34,836  
+[2026-06-03 09:56:34,838] : org.springframework.web.servlet.DispatcherServlet :INFO --> Completed initialization in 2 ms ::  2026-06-03 09:56:34,838  
+[2026-06-03 09:58:31,565] : org.springframework.boot.tomcat.GracefulShutdown :INFO --> Commencing graceful shutdown. Waiting for active requests to complete ::  2026-06-03 09:58:31,565  
+[2026-06-03 09:58:31,570] : org.springframework.boot.tomcat.GracefulShutdown :INFO --> Graceful shutdown complete ::  2026-06-03 09:58:31,570  
+[2026-06-03 09:58:31,573] : org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean :INFO --> Closing JPA EntityManagerFactory for persistence unit 'default' ::  2026-06-03 09:58:31,573  
+[2026-06-03 09:58:31,578] : org.springframework.beans.factory.support.DisposableBeanAdapter :WARN --> Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-240] ::  2026-06-03 09:58:31,578  
+[2026-06-03 09:58:31,578] : com.zaxxer.hikari.HikariDataSource :INFO --> HikariPool-1 - Shutdown initiated... ::  2026-06-03 09:58:31,578  
+[2026-06-03 09:58:31,579] : com.zaxxer.hikari.HikariDataSource :INFO --> HikariPool-1 - Shutdown completed. ::  2026-06-03 09:58:31,579  
