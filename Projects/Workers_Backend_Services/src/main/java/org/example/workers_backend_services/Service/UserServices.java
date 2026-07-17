@@ -1,5 +1,8 @@
 package org.example.workers_backend_services.Service;
 
+import org.example.workers_backend_services.DTO.UserRequestDTO;
+import org.example.workers_backend_services.DTO.UserResponseDTO;
+import org.example.workers_backend_services.Entity.Role;
 import org.example.workers_backend_services.Entity.Users;
 import org.example.workers_backend_services.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,31 +18,39 @@ public class UserServices {
     UserRepository repository;
 
 
-    public List<Users> getallusers() {
-        return repository.findAll();
+    public List<UserResponseDTO> getallusers() {
+        return repository.findAll()
+                .stream()
+                .map(this::convertToDTO)
+                .toList();
     }
 
-    public Users getuserbyid(Long id) {
-        return repository.findById(id).orElseThrow(null);
+    public UserResponseDTO getuserbyid(Long id) {
+        Users  user=repository.findById(id).orElseThrow(()->new RuntimeException("user not found"));
+        return convertToDTO(user);
     }
 
-    public Users adduser(Users user) {
-        if(user.getCreated_at()==null){
-            user.setCreated_at(LocalDateTime.now());
-        }
-        return repository.save(user);
+    public UserResponseDTO adduser(UserRequestDTO dto) {
+        Users user=new Users();
+        user.setUser_name(dto.getUser_name());
+        user.setEmail(dto.getEmail());
+        user.setPhone(dto.getPhone());
+        user.setPassword(dto.getPassword());
+        user.setRole(Role.CUSTOMER);
+        user.setCreated_at(LocalDateTime.now());
+        Users saved=repository.save(user);
+        return convertToDTO(saved);
+
     }
 
-    public Users updateusers(Long id, Users users) {
-        Users request=repository.findById(id).orElseThrow(null);
-        request.setUser_name(users.getUser_name());
-        request.setEmail(users.getEmail());
-        request.setPhone(users.getPhone());
-        request.setPassword(users.getPassword());
-        request.setRole(users.getRole());
+    public UserResponseDTO updateusers(Long id, UserRequestDTO dto) {
 
-
-        return repository.save(request);
+        Users request=repository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
+        request.setUser_name(dto.getUser_name());
+        request.setEmail(dto.getEmail());
+        request.setPhone(dto.getPhone());
+        Users updated=repository.save(request);
+        return convertToDTO(updated);
     }
 
     public boolean deleteuser(Long id) {
@@ -48,5 +59,16 @@ public class UserServices {
             return true;
         }
         return false;
+    }
+
+    private UserResponseDTO convertToDTO(Users user) {
+        return new UserResponseDTO(
+                user.getUser_id(),
+                user.getUser_name(),
+                user.getEmail(),
+                user.getPhone(),
+                user.getRole().toString(),
+                user.getCreated_at()
+        );
     }
 }

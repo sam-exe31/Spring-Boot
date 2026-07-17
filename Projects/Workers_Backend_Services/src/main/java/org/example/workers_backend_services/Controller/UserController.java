@@ -1,5 +1,8 @@
 package org.example.workers_backend_services.Controller;
 
+import jakarta.validation.Valid;
+import org.example.workers_backend_services.DTO.UserRequestDTO;
+import org.example.workers_backend_services.DTO.UserResponseDTO;
 import org.example.workers_backend_services.Entity.Users;
 import org.example.workers_backend_services.Service.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +21,7 @@ public class UserController {
     UserServices userServices;
 
     @GetMapping  // all
-    public ResponseEntity<List<Users>> getallUsers(){
+    public ResponseEntity<List<UserResponseDTO>> getallUsers(){
         List<Users> use=userServices.getallusers();
         return ResponseEntity.ok(use);
     }
@@ -33,9 +36,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Users> adduser(@RequestBody Users user){
-        Users createduser=userServices.adduser(user);
-        return new ResponseEntity<>(createduser, HttpStatus.CREATED);
+    public ResponseEntity<UserResponseDTO> adduser(@Valid @RequestBody UserRequestDTO dto){
+        return ResponseEntity.ok(userServices.adduser(dto));
     }
 
     @PutMapping("/{id}")

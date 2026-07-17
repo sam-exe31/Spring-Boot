@@ -1,5 +1,8 @@
 package org.example.workers_backend_services.Controller;
 
+import jakarta.validation.Valid;
+import org.example.workers_backend_services.DTO.CategoryRequestDTO;
+import org.example.workers_backend_services.DTO.CategoryResponseDTO;
 import org.example.workers_backend_services.Entity.Category;
 import org.example.workers_backend_services.Service.CategoryServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +34,8 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> setCategory(@RequestBody Category category){
-        Category category1=categoryServices.setCategory(category);
-        return new ResponseEntity<>(category1, HttpStatus.CREATED);
+    public ResponseEntity<CategoryResponseDTO> setCategory(@Valid  @RequestBody CategoryRequestDTO dto){
+        return ResponseEntity.ok(categoryServices.setCategory(dto));
     }
 
     @PutMapping("/{id}")
