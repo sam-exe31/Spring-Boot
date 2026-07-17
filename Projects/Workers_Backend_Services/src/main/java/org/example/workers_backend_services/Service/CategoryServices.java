@@ -20,11 +20,11 @@ public class CategoryServices {
 //    private Category category;
 
 
-    public Category getCategory(Long id) {
-        return categoryRepository.findById(id).orElseThrow(null);
+    public CategoryResponseDTO getCategory(Long id) {
+        return categoryRepository.findById(id).orElseThrow(()->new RuntimeException("category cannot be null"));
     }
 
-    public List<Category> getAllcategory() {
+    public List<CategoryResponseDTO> getAllcategory() {
         return categoryRepository.findAll();
     }
 
@@ -37,13 +37,12 @@ public class CategoryServices {
 
     }
 
-    public Category updateCategory(Long id, Category category) {
-        Category refined=categoryRepository.findById(id).orElseThrow(null);
-        refined.setCat_name(category.getCat_name());
-        refined.setDescription(category.getDescription());
-        System.out.println(category.getCat_name());
-        System.out.println(category.getDescription());
-        return categoryRepository.save(refined);
+    public CategoryResponseDTO updateCategory(Long id, CategoryRequestDTO dto) {
+        Category refined=categoryRepository.findById(id).orElseThrow(()->new RuntimeException("category cant be null"));
+        refined.setCat_name(dto.getCat_name());
+        refined.setDescription(dto.getDescription());
+        Category saved=categoryRepository.save(refined);
+        return convertToDTO(saved);
     }
 
     public void deleteCategory(Long id) {

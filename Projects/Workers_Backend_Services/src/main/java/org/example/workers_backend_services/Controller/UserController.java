@@ -22,17 +22,14 @@ public class UserController {
 
     @GetMapping  // all
     public ResponseEntity<List<UserResponseDTO>> getallUsers(){
-        List<Users> use=userServices.getallusers();
+        List<UserResponseDTO> use=userServices.getallusers();
         return ResponseEntity.ok(use);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Users> getUserbyid( @PathVariable  Long id){
-        Users use= userServices.getuserbyid(id);
-        if(use!=null){
-            return ResponseEntity.ok(use);
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<UserResponseDTO> getUserbyid( @PathVariable  Long id){
+        UserResponseDTO use = userServices.getuserbyid(id);
+        return ResponseEntity.ok(use);
     }
 
     @PostMapping
@@ -41,12 +38,9 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Users> updateusers(@PathVariable Long id,@RequestBody Users users){
-        Users updateduser=userServices.updateusers(id,users);
-        if(updateduser!=null){
-            return ResponseEntity.ok(updateduser);
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<UserResponseDTO> updateusers(@PathVariable Long id,@Valid @RequestBody UserRequestDTO dto){
+        UserResponseDTO updateduser=userServices.updateusers(id,dto);
+        return ResponseEntity.ok(updateduser);
     }
 
     @DeleteMapping("/{id}")
