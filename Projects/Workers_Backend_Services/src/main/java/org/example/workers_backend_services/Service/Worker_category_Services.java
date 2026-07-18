@@ -1,5 +1,7 @@
 package org.example.workers_backend_services.Service;
 
+import org.example.workers_backend_services.DTO.Worker_categoryrequestDTO;
+import org.example.workers_backend_services.DTO.Worker_categoryresponseDTO;
 import org.example.workers_backend_services.Entity.Worker_category;
 import org.example.workers_backend_services.Repository.Worker_category_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,10 @@ public class Worker_category_Services {
     @Autowired
     Worker_category_Repository categoryRepository;
 
-    public Worker_category createWorkerCategory(Worker_category category) {
-        return categoryRepository.save(category);
+    public Worker_categoryresponseDTO createWorkerCategory(Worker_categoryrequestDTO dto) {
+        if(dto.getMax_price()<dto.getMin_price()){
+            throw new RuntimeException("max price cannot be less than min price");
+        }
     }
 
 
