@@ -20,7 +20,6 @@ public class UserRequestDTO {
     @NotBlank(message = "Phone is required")
     @Pattern(regexp = "^[0-9]{10}$",message = "phone must be 10 digits")
     private String phone;
-
     @NotBlank(message = "password is required")
     @Size(min = 6,message = "password must be atleast 6 character ")
     private String password;

@@ -1,5 +1,8 @@
 package org.example.workers_backend_services.Service;
 
+import org.example.workers_backend_services.DTO.CategoryResponseDTO;
+import org.example.workers_backend_services.DTO.ReviewResponseDTO;
+import org.example.workers_backend_services.Entity.Category;
 import org.example.workers_backend_services.Entity.Reviews;
 import org.example.workers_backend_services.Repository.Reviews_Request_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +60,17 @@ public class Review_Services {
             return true;
         }
         return false;
+    }
+
+    private ReviewResponseDTO convertToDTO(Reviews reviews){
+        return new ReviewResponseDTO(
+                reviews.getReviewId(),
+                reviews.getCustomer().getUser_name(),
+                reviews.getWorker().getUsers().getUser_name(),
+                reviews.getServiceRequest().getService_id(),
+                reviews.getRating(),
+                reviews.getReviewText(),
+                reviews.getCreatedAt()
+        );
     }
 }

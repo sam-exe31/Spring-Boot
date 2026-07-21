@@ -21,11 +21,15 @@ public class CategoryServices {
 
 
     public CategoryResponseDTO getCategory(Long id) {
-        return categoryRepository.findById(id).orElseThrow(()->new RuntimeException("category cannot be null"));
+         Category cat=categoryRepository.findById(id).orElseThrow(()->new RuntimeException("category cannot be null"));
+         return convertToDTO(cat);
     }
 
     public List<CategoryResponseDTO> getAllcategory() {
-        return categoryRepository.findAll();
+        return categoryRepository.findAll()
+                .stream()
+                .map(this::convertToDTO)
+                .toList();
     }
 
     public CategoryResponseDTO setCategory(CategoryRequestDTO dto) {
