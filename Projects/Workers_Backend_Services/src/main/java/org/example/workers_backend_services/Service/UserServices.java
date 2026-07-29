@@ -6,6 +6,7 @@ import org.example.workers_backend_services.Entity.Role;
 import org.example.workers_backend_services.Entity.Users;
 import org.example.workers_backend_services.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,8 @@ public class UserServices {
 
     @Autowired
     UserRepository repository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     public List<UserResponseDTO> getallusers() {
@@ -35,7 +38,7 @@ public class UserServices {
         user.setUser_name(dto.getUser_name());
         user.setEmail(dto.getEmail());
         user.setPhone(dto.getPhone());
-        user.setPassword(dto.getPassword());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setRole(Role.CUSTOMER);
         user.setCreated_at(LocalDateTime.now());
         Users saved=repository.save(user);

@@ -1,5 +1,8 @@
 package org.example.workers_backend_services.Controller;
 
+import jakarta.validation.Valid;
+import org.example.workers_backend_services.DTO.Worker_categoryrequestDTO;
+import org.example.workers_backend_services.DTO.Worker_categoryresponseDTO;
 import org.example.workers_backend_services.Entity.Worker_category;
 import org.example.workers_backend_services.Service.Worker_category_Services;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,36 +20,32 @@ public class Worker_category_Controller {
     Worker_category_Services services;
 
     @PostMapping
-    public ResponseEntity<Worker_category> createWorkerCategory(@RequestBody Worker_category category) {
-        Worker_category createdCategory = services.createWorkerCategory(category);
-        return new ResponseEntity<>(createdCategory, HttpStatus.CREATED); // Returns HTTP 201
+    public ResponseEntity<Worker_categoryresponseDTO> createWorkerCategory(@Valid  @RequestBody Worker_categoryrequestDTO dto) {
+        Worker_categoryresponseDTO workerCategoryresponseDTO=services.createWorkerCategory(dto);
+        return new ResponseEntity<>(workerCategoryresponseDTO,HttpStatus.CREATED);
     }
 
     // READ (ALL)
     @GetMapping
-    public ResponseEntity<List<Worker_category>> getallworkercat() {
-        List<Worker_category> categories = services.getAllWorkerCategories();
+    public ResponseEntity<List<Worker_categoryresponseDTO>> getallworkercat() {
+        List<Worker_categoryresponseDTO> categories = services.getAllWorkerCategories();
         return ResponseEntity.ok(categories); // Returns HTTP 200
     }
 
     // READ (BY ID)
     @GetMapping("/{id}")
-    public ResponseEntity<Worker_category> getWorkerCategoryById(@PathVariable Long id) {
-        Worker_category category = services.getWorkerCategoryById(id);
-        if (category != null) {
+    public ResponseEntity<Worker_categoryresponseDTO> getWorkerCategoryById(@PathVariable Long id) {
+        Worker_categoryresponseDTO category = services.getWorkerCategoryById(id);
             return ResponseEntity.ok(category);
-        }
-        return ResponseEntity.notFound().build();
+
     }
 
     // UPDATE
     @PutMapping("/{id}")
-    public ResponseEntity<Worker_category> updateWorkerCategory(@PathVariable Long id, @RequestBody Worker_category categoryDetails) {
-        Worker_category updatedCategory = services.updateWorkerCategory(id, categoryDetails);
-        if (updatedCategory != null) {
+    public ResponseEntity<Worker_categoryresponseDTO> updateWorkerCategory(@PathVariable Long id,@Valid @RequestBody Worker_categoryrequestDTO categoryDetails) {
+        Worker_categoryresponseDTO updatedCategory = services.updateWorkerCategory(id, categoryDetails);
             return ResponseEntity.ok(updatedCategory);
-        }
-        return ResponseEntity.notFound().build();
+
     }
 
 

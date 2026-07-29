@@ -1,5 +1,8 @@
 package org.example.workers_backend_services.Controller;
 
+import jakarta.validation.Valid;
+import org.example.workers_backend_services.DTO.Service_requestRequestDTO;
+import org.example.workers_backend_services.DTO.Service_requestResponseDTO;
 import org.example.workers_backend_services.Entity.Service_request;
 import org.example.workers_backend_services.Service.Service_Request_Services;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +19,22 @@ public class Service_Request_Controller {
     Service_Request_Services services;
 
     @PostMapping
-    public ResponseEntity<Service_request> createRequest(@RequestBody Service_request serviceRequest) {
-        Service_request createdRequest = services.createServiceRequest(serviceRequest);
+    public ResponseEntity<Service_requestResponseDTO> createRequest( @Valid @RequestBody Service_requestRequestDTO dto) {
+        Service_requestResponseDTO createdRequest = services.createServiceRequest(dto);
         return new ResponseEntity<>(createdRequest, HttpStatus.CREATED);
     }
 
     // 2. Get all service requests
     @GetMapping
-    public ResponseEntity<List<Service_request>> getAllRequests() {
-        List<Service_request> requests = services.getAllServiceRequests();
+    public ResponseEntity<List<Service_requestResponseDTO>> getAllRequests() {
+        List<Service_requestResponseDTO> requests = services.getAllServiceRequests();
         return ResponseEntity.ok(requests);
     }
 
     // 3. Get a specific service request by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Service_request> getRequestById(@PathVariable("id") Long id) {
-        Service_request request = services.getServiceRequestById(id);
+    public ResponseEntity<Service_requestResponseDTO> getRequestById(@Valid @PathVariable("id") Long id) {
+        Service_requestResponseDTO request = services.getServiceRequestById(id);
         if (request != null) {
             return ResponseEntity.ok(request);
         }
@@ -40,12 +43,15 @@ public class Service_Request_Controller {
 
     // 4. Update an existing service request
     @PutMapping("/{id}")
-    public ResponseEntity<Service_request> updateRequest(@PathVariable("id") Long id, @RequestBody Service_request serviceRequest) {
-        Service_request updatedRequest = services.updateServiceRequest(id, serviceRequest);
-        if (updatedRequest != null) {
-            return ResponseEntity.ok(updatedRequest);
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<Service_requestResponseDTO> updateRequest(@Valid @PathVariable("id") Long id, @RequestBody Service_requestRequestDTO dto) {
+        Service_requestResponseDTO updatedRequest = services.updateServiceRequest(id, dto);
+       return ResponseEntity.ok(updatedRequest);
+    }
+
+    @PutMapping("/{id}/assign-worker/{workerId}")
+    public ResponseEntity<Service_requestResponseDTO> assignWorker(@PathVariable("id") Long id,@PathVariable("workerid") Long workerId){
+        Service_requestResponseDTO updatedrequest=services.assignWorker(id,workerId);
+        return ResponseEntity.ok(updatedrequest);
     }
 
     // 5. Delete a service request

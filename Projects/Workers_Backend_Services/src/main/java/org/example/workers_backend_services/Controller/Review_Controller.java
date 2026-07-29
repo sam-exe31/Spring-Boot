@@ -1,5 +1,8 @@
 package org.example.workers_backend_services.Controller;
 
+import jakarta.validation.Valid;
+import org.example.workers_backend_services.DTO.ReviewRequestDTO;
+import org.example.workers_backend_services.DTO.ReviewResponseDTO;
 import org.example.workers_backend_services.Entity.Reviews;
 import org.example.workers_backend_services.Service.Review_Services;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,30 +21,30 @@ public class Review_Controller {
     Review_Services services;
 
     @PostMapping
-    public ResponseEntity<Reviews> createReview(@RequestBody Reviews review) {
-        Reviews savedReview = services.createReview(review);
+    public ResponseEntity<ReviewResponseDTO> createReview(@RequestBody ReviewRequestDTO review) {
+        ReviewResponseDTO savedReview = services.createReview(review);
         return new ResponseEntity<>(savedReview, HttpStatus.CREATED);
     }
 
     // 2. Get all reviews
     @GetMapping
-    public ResponseEntity<List<Reviews>> getAllReviews() {
-        List<Reviews> reviews = services.getAllReviews();
+    public ResponseEntity<List<ReviewResponseDTO>> getAllReviews() {
+        List<ReviewResponseDTO> reviews = services.getAllReviews();
         return ResponseEntity.ok(reviews);
     }
 
     // 3. Get a specific review by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Reviews> getReviewById(@PathVariable Long id) {
-        Optional<Reviews> review = services.getReviewById(id);
+    public ResponseEntity<ReviewResponseDTO> getReviewById(@PathVariable Long id) {
+        Optional<ReviewResponseDTO> review = services.getReviewById(id);
         return review.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // 4. Update an existing review
     @PutMapping("/{id}")
-    public ResponseEntity<Reviews> updateReview(@PathVariable Long id, @RequestBody Reviews reviewDetails) {
-        Optional<Reviews> updatedReview = services.updateReview(id, reviewDetails);
+    public ResponseEntity<ReviewResponseDTO> updateReview(@PathVariable Long id,@Valid  @RequestBody ReviewRequestDTO reviewDetails) {
+        Optional<ReviewResponseDTO> updatedReview = services.updateReview(id, reviewDetails);
         return updatedReview.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

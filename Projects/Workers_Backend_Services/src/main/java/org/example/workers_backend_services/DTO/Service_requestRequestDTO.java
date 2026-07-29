@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -30,6 +31,6 @@ public class Service_requestRequestDTO {
     @NotNull(message = "pref date cannot be null")
     private LocalDate preferredDate;
     @NotNull(message = "pref time cannot be null")
-    private LocalDate preferredTime;
+    private LocalTime preferredTime;
 
 }
